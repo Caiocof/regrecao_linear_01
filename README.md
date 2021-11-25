@@ -24,5 +24,31 @@ Estudo de Regressão Linear 01
 ## Objetivo
 - Analisar o consumo de cerveja naquele ano e criar um modelo preditivo para o possível aumento ou redução no consumo
 
+## Como usar o modelo criado
+```python
+import pickle
+
+#faz a importação do arquivo que tem o modelo
+modelo = open('modelo_consumo_cerveja','rb')
+lm_new = pickle.load(modelo)
+modelo.close()
+
+#criar as variaveis para verificar o consumo de cerveja
+
+#temperatura máxima previsca
+temp_max = 30.5
+
+#chuva prevista em (mm)
+chuva = 12.2
+
+#se sera no fim de semana ou não
+#1 = True, 0 = False
+fds = 0
+
+#cria nossa entrada e passa para o modelo
+entrada = [[temp_max, chuva, fds]]
+print('{0:.2f} litros'.format(lm_new.predict(entrada)[0]))
+```
+
 ## Fonte dos dados
 - https://www.kaggle.com/
